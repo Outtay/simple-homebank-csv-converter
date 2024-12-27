@@ -9,7 +9,7 @@ Simple python script to interactively convert a csv into the format homebank exp
 ## How it works
 The script is extremely simple, if you just want to get your transactions somehow into Homebank.  
 It's interactive and asks what existing columns you want to map onto the columns that Homebank expects.  
-The only "extra" is that it can convert date formats into the from Homebank expected format.
+The only "extra" is that it can convert date formats into the format expected from Homebank.
 
 Note: For Raiffeisen I had to add a header row. Not sure if it would work without it, but it made it easier to map the columns.
 
