@@ -23,23 +23,27 @@ Pass some or all of the parameters described below and the script won't prompt f
 Example: `python homeBankCSVConverter.py "/path/to/input_file" "path/to/output_file" --date=2 --amount=4 --memo=5`
 
 Required:
-- `input_file`                        Path to the input CSV file.
-- `output_file`                      Path to save the output CSV file.
+|   Parameter   |  Type  |  Description |
+| ------------- | ------ | ------------ |
+| `input_file`  | string | Path to the input CSV file |
+| `output_file` | string | Path to save the output CSV file |
 
 Optional:
-- `-h`, `--help`           	     Show help message
-- `--input_delimiter`           (str) Delimiter used in the input file (default: ,).
-- `--input_separator`           (str) Separator for the output file (default: ;).
-- `--date_format`                  (str) Date format in the input file (default: YYYY-MM-DD).
-- `--date`                               (int) Index of the column containing the date.
-- `--payment_type`                (int) Index of the column containing the payment type.
-- `--default_payment_type` (int) Defaut payment type for all transactions, used if no payment type column has been specified (default: 0).
-- `--number`                           (int) Index of the column containing the cheque number, value date, card ID, transaction ID, or other details.
-- `--payee`                             (int) Index of the column containing the payee.
-- `--memo`                               (int) Index of the column containing the memo.
-- `--amount`                           (int) Index of the column containing the amount.
-- `--category`                       (int) Index of the column containing the category.
-- `--tags`                              (int) Index of the column containing the tags.
+|   Parameter               |  Type   |  Description      | Default value |
+| ------------------------- | ------- | ----------------- | ------------- |
+| `-h`, `--help`            |         | Show help message |               |
+| `--input_delimiter`       | string  | Delimiter used in the input file  | `,` |
+| `--input_separator`       | string  | Separator for the output file  | `;` |
+| `--date_format`           | string  | Date format in the input file  | `YYYY-MM-DD` |
+| `--date`                  | integer | Index of the column containing the date | `None` |
+| `--payment_type`          | integer | Index of the column containing the payment type | `None` |
+| `--default_payment_type`  | integer | Defaut payment type for all transactions, used if no payment type column has been specified  | `0` |
+| `--number`                | integer | Index of the column containing the cheque number, value date, card ID, transaction ID, or other details | `None` |
+| `--payee`                 | integer | Index of the column containing the payee | `None` |
+| `--memo`                  | integer | Index of the column containing the memo | `None` |
+| `--amount`                | integer | Index of the column containing the amount | `None` |
+| `--category`              | integer | Index of the column containing the category | `None` |
+| `--tags`                  | integer | Index of the column containing the tags | `None` |
 
 
 ## Reference Link
