@@ -1,3 +1,26 @@
+"""
+Converts a bank-exported CSV to a format compatible with HomeBank.
+Repo: https://github.com/Outtay/simple-homebank-csv-converter
+
+If can be run with the following arguments. If none is provided, the script will run interactively.
+
+Args:
+    input_file (str, optional): Path to the input CSV file. Defaults to None. None triggers interactive mode.
+    output_file (str, optional): Path to save the output CSV file. Defaults to None. None triggers interactive mode.
+    input_delimiter (str, optional): Delimiter used in the input file. Defaults to ','.
+    input_separator (str, optional): Separator for the output file. Defaults to ';'.
+    date_format (str, optional): Date format in the input file. Defaults to 'YYYY-MM-DD'.
+    date (str, optional): Name or index of the column containing the date. Defaults to None.
+    payment_type (int, optional): Payment type for all transactions. Defaults to None.
+    default_payment_type (int, optional): Payment type for all transactions. Defaults to '0'.
+    number (str, optional): Name or index for the column containing the number. Defaults to None.
+    payee (str, optional): Name or index of the column containing the payee. Defaults to None.
+    memo (str, optional): Name or index of the column containing the memo. Defaults to None.
+    amount (str, optional): Name or index of the column containing the amount. Defaults to None.
+    category (str, optional): Name or index of the column containing the category. Defaults to None.
+    tags (str, optional): Name or index of the column containing the tags. Defaults to None.
+"""
+
 import csv
 from datetime import datetime
 import argparse
@@ -37,29 +60,6 @@ def map_bank_csv_to_homebank(
                                 category=None,
                                 tags=None,
                             ):
-
-    """
-    Converts a bank-exported CSV to a format compatible with HomeBank.
-    Repo: https://github.com/Outtay/simple-homebank-csv-converter
-
-    If can be run with the following arguments. If none is provided, the script will run interactively.
-
-    Args:
-        input_file (str, optional): Path to the input CSV file. Defaults to None. None triggers interactive mode.
-        output_file (str, optional): Path to save the output CSV file. Defaults to None. None triggers interactive mode.
-        input_delimiter (str, optional): Delimiter used in the input file. Defaults to ','.
-        input_separator (str, optional): Separator for the output file. Defaults to ';'.
-        date_format (str, optional): Date format in the input file. Defaults to 'YYYY-MM-DD'.
-        date (str, optional): Name or index of the column containing the date. Defaults to None.
-        payment_type (int, optional): Payment type for all transactions. Defaults to None.
-        default_payment_type (int, optional): Payment type for all transactions. Defaults to '0'.
-        number (str, optional): Name or index for the column containing the number. Defaults to None.
-        payee (str, optional): Name or index of the column containing the payee. Defaults to None.
-        memo (str, optional): Name or index of the column containing the memo. Defaults to None.
-        amount (str, optional): Name or index of the column containing the amount. Defaults to None.
-        category (str, optional): Name or index of the column containing the category. Defaults to None.
-        tags (str, optional): Name or index of the column containing the tags. Defaults to None.
-    """
 
     # HomeBank headers and descriptions
     homebank_headers = {
