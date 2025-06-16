@@ -22,13 +22,13 @@ Pass some or all of the parameters described below and the script won't prompt f
 
 Example: `python homeBankCSVConverter.py "/path/to/input_file" "path/to/output_file" --date=2 --amount=4 --memo=5`
 
-Required:
+#### Required
 |   Parameter   |  Type  |  Description |
 | ------------- | ------ | ------------ |
 | `input_file`  | string | Path to the input CSV file |
 | `output_file` | string | Path to save the output CSV file |
 
-Optional:
+#### Optional
 |   Parameter               |  Type   |  Description      | Default value |
 | ------------------------- | ------- | ----------------- | ------------- |
 | `-h`, `--help`            |         | Show help message |               |
