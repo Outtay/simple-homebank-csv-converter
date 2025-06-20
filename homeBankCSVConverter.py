@@ -25,7 +25,7 @@ import csv
 from datetime import datetime
 import argparse
 
-def show_payment_type_options():
+def list_payment_type_options():
 
     payment_type_mapping = {
         "0": "none",
@@ -43,6 +43,7 @@ def show_payment_type_options():
     print("Payment Type Options:")
     for key, val in payment_type_mapping.items():
         print(f"{key} = {val}")
+    return payment_type_mapping
 
 def map_bank_csv_to_homebank(
                                 input_file=None,
@@ -80,7 +81,7 @@ def map_bank_csv_to_homebank(
         with open(output_file, mode='w', encoding='utf-8', newline='') as outfile:
             homebank_headers_keys = list(homebank_headers.keys())
             homebank_headers_keys.remove("Default Payment Type")
-
+            
             # Write headers row
             writer = csv.DictWriter(outfile, fieldnames=homebank_headers_keys, delimiter=input_separator)
             writer.writeheader()
@@ -148,21 +149,21 @@ def map_bank_csv_to_homebank(
                             example = examples[col] if examples[col].strip() else "<empty>"
                             print(f"{idx + 1}: {col} (Example: {example})")
                         choice = input(f"Enter the column number to map to '{homebank_header}' or press Enter to leave it empty: ")
-                        homebank_header = homebank_header.replace(' ', '_')
                         if choice.isdigit() and 1 <= int(choice) <= len(input_headers):
                             mapping[homebank_header] = input_headers[int(choice) - 1]
                         else:
                             mapping[homebank_header] = None
 
                 # Handle 'Default Payment Type' field interactively
+                payment_type = mapping['Payment Type']
                 if not payment_type:
                     print("\nThe payment Type field is required by HomeBank. Set a default type to apply to all lines:")
-                    show_payment_type_options()
+                    payment_type_mapping = list_payment_type_options()
                     default_payment_type = input("Enter Payment Type for all transactions (default is '0 = none'): ") or default_payment_type
                     while default_payment_type not in payment_type_mapping:
                         default_payment_type = input("Invalid input. Enter a valid Payment Type: ")
 
-                    create_ouput_file(output_file, input_separator, date_format, payment_type, default_payment_type, homebank_headers, reader, mapping)
+                create_ouput_file(output_file, input_separator, date_format, payment_type, default_payment_type, homebank_headers, reader, mapping)
 
         except FileNotFoundError:
             print(f"\nError: Input file not found: {input_file}")
@@ -189,7 +190,7 @@ def map_bank_csv_to_homebank(
                 for homebank_header, description in homebank_headers.items():
                     key = homebank_header.lower().replace(' ', '_')
                     choice = args_list[key]
-                    if choice and choice.isdigit() and 1 <= int(choice) <= len(input_headers):
+                    if choice and choice.isdigit() and 1 <= int(choice) <= len(input_headers) and key != 'default_payment_type':
                         mapping[homebank_header] = input_headers[int(choice)-1]
                     else:
                         mapping[homebank_header] = None
@@ -225,7 +226,7 @@ if __name__ == "__main__":
         allowed_range.remove(5)
         if int(args.default_payment_type) not in allowed_range:
             print('\nInvalid Default Payment Type value. Try with an integer from the list below:\n')
-            show_payment_type_options()
+            list_payment_type_options()
             exit()
 
     map_bank_csv_to_homebank(
