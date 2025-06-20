@@ -1,7 +1,7 @@
 """
 Converts a bank-exported CSV to a format compatible with HomeBank.
 Repo: https://github.com/Outtay/simple-homebank-csv-converter
-License: Unlicense
+License: Unlicense (https://unlicense.org)
 
 If can be run with the following arguments. If none is provided, the script will run interactively.
 
